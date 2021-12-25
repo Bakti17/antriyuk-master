@@ -37,9 +37,34 @@ class _AmbilAntriState extends State<AmbilAntri> {
     }
     if(listLayanan.length>0){
       valLayanan = listLayanan[0];
+      cekAntri();
     }
     else{
       _showMyDialog();
+    }
+  }
+
+  void cekAntri() async{
+    String tgl = DateFormat("y-MM-d", "id_ID").format(DateTime.now());
+    String mail = user.email!;
+    final response = await http.post(Uri.parse("http://10.0.2.2/antriyuk/cekUlang.php"), body: {"email": mail, "tanggal":tgl});
+    List list = jsonDecode(response.body);
+    if(list.length>1){
+      _showMyDialogcek();
+    }
+    else{
+      cekKuota();
+    }
+    
+
+  }
+
+  void cekKuota()async{
+    String tgl = DateFormat("y-MM-d", "id_ID").format(DateTime.now());
+    final response = await http.post(Uri.parse("http://10.0.2.2/antriyuk/cekKuota.php"), body: {"dinas": tempat.text, "tanggal":tgl});
+    List list = jsonDecode(response.body);
+    if(list[0]['antrian'] >= 50){
+      _dialogAntriPenuh();
     }
   }
 
@@ -55,43 +80,124 @@ class _AmbilAntriState extends State<AmbilAntri> {
   }
 
   Future<void> _showMyDialog() async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Belum ada data'),
-        content: SingleChildScrollView(
-          child: ListBody(
-            children: const <Widget>[
-              Text('Maaf. Belum ada layanan yang ada'),
-              Text('pada tempat yang anda pilih'),
-            ],
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Belum ada data'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Maaf. Belum ada layanan yang ada'),
+                Text('pada tempat yang anda pilih'),
+              ],
+            ),
           ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: const Text('OK'),
-            onPressed: () {
-              Navigator.of(context)
-              .pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>HalHome()), (Route<dynamic> route) => false);
-            },
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context)
+                .pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>HalHome()), (Route<dynamic> route) => false);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+  
+  Future<void> _showMyDialogcek() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Mencapai Limit Antrian',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ],
-      );
-    },
-  );
-}
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text(
+                  'Maaf. Limit daftar antrian anda sudah mencapai 2 antrian di hari ini hal ini kami lakukan untuk mencegah penyalahgunaan aplikasi ini.',
+                  textAlign: TextAlign.justify,
+                ),
+                Text(''),
+                Text(
+                  'Mohon untuk menunggu hari selajutnya untuk mendaftar antrian lagi',
+                  textAlign: TextAlign.justify,
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context)
+                .pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>HalHome()), (Route<dynamic> route) => false);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+  Future<void> _dialogAntriPenuh() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Antrian sudah penuh',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  'Maaf. Antrian pada ' + tempat.text+' sudah penuh.',
+                  textAlign: TextAlign.justify,
+                ),
+                const Text(''),
+                const Text(
+                  'Mohon untuk menunggu hari selajutnya untuk mendaftar antrian lagi',
+                  textAlign: TextAlign.justify,
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context)
+                .pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>HalHome()), (Route<dynamic> route) => false);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
   @override
   void initState(){ 
     super.initState();
     initializeDateFormatting('id_ID', null);
-
     namaLengkap.text = user.displayName!;
     String ndinas= AmbilAntri.tempat.text;  
     tempat.text = ndinas;
     dateinput.text = ReviewAntri.tanggal.text;
     LLayanan(ndinas);
+    
   }
 
   @override
@@ -237,9 +343,10 @@ class _AmbilAntriState extends State<AmbilAntri> {
                 readOnly: true,  
                 onTap: () async {
                   DateTime? pickedDate = await showDatePicker(
+                      
                       context: context, initialDate: DateTime.now(),
-                      firstDate: DateTime(2000), 
-                      lastDate: DateTime(2101)
+                      firstDate: DateTime.now(), 
+                      lastDate: DateTime.now().add(Duration(days: 3))
                   );                  
                   if(pickedDate != null ){
                       String formattedDate = DateFormat("EEEE, d MMMM y", "id_ID").format(pickedDate); 
