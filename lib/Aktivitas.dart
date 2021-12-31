@@ -21,8 +21,8 @@ class _AktivitasSayaState extends State<AktivitasSaya> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xffDC1B1B),
-        title: Text("Aktivitas Saya"),
+        backgroundColor: const Color(0xffDC1B1B),
+        title: const Text("Aktivitas Saya"),
       ),
       body: Column(
         children: [
@@ -39,7 +39,7 @@ class _AktivitasSayaState extends State<AktivitasSaya> {
                   height : MediaQuery.of(context).size.width *0.092,
                   color: Color(0xffdc1b1b),
                   child: TextButton(
-                    child: Text(
+                    child: const Text(
                       "Antrian",
                       style: TextStyle(
                         color: Colors.white,
@@ -56,7 +56,7 @@ class _AktivitasSayaState extends State<AktivitasSaya> {
                   height : MediaQuery.of(context).size.width *0.1,
                   color: Color(0xffdc1b1b),
                   child: TextButton(
-                    child: Text(
+                    child: const Text(
                       "Selesai",
                       style: TextStyle(
                         color: Colors.white,
@@ -79,7 +79,7 @@ class _AktivitasSayaState extends State<AktivitasSaya> {
           ),
           Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height*0.731,
+            height: MediaQuery.of(context).size.height*0.7285,
             decoration: BoxDecoration(   
                 color: Colors.white,
                 boxShadow: [
@@ -131,15 +131,15 @@ class _AntrianState extends State<Antrian> {
       itemCount: listAntrian.length,
       itemBuilder: (context,index){
         return Padding(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           child: Container(
             width: MediaQuery.of(context).size.width * 0.9,
             height: MediaQuery.of(context).size.height * 0.35,
-            padding: EdgeInsets.only(top:20),
+            padding: const EdgeInsets.only(top:20),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-               boxShadow: [
+               boxShadow: const [
                   BoxShadow(
                     color: Colors.black12,
                     spreadRadius: 0,
@@ -154,12 +154,12 @@ class _AntrianState extends State<Antrian> {
                   width: MediaQuery.of(context).size.width * 0.1,
                   // color: Colors.white,
                   alignment: Alignment.topCenter,
-                  child: Icon(Icons.access_time,color: Colors.red,),
+                  child: const Icon(Icons.access_time,color: Colors.red,),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Antrian telah dipesan",
                       style: TextStyle(
                         color: Colors.black,
@@ -168,8 +168,8 @@ class _AntrianState extends State<Antrian> {
                         fontFamily: 'Roboto Medium'
                       ),
                     ),
-                    SizedBox(height: 3),
-                    Text(
+                    const SizedBox(height: 3),
+                    const Text(
                       "Nomor Antrian",
                       style: TextStyle(
                         color: Colors.black54,
@@ -179,14 +179,14 @@ class _AntrianState extends State<Antrian> {
                     ),
                     Text(
                       listAntrian[index]['nomorantri'],
-                      style: TextStyle(
+                      style:const TextStyle(
                         color: Colors.black,
                         fontSize: 13,
                         fontFamily: 'Roboto'
                       ),
                     ),
-                    SizedBox(height: 3),
-                    Text(
+                    const SizedBox(height: 3),
+                    const Text(
                       "Nama Lengkap",
                       style: TextStyle(
                         color: Colors.black54,
@@ -196,14 +196,14 @@ class _AntrianState extends State<Antrian> {
                     ),
                     Text(
                       listAntrian[index]['nama'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 13,
                         fontFamily: 'Roboto'
                       ),
                     ),
-                    SizedBox(height: 3),
-                    Text(
+                    const SizedBox(height: 3),
+                    const Text(
                       "Nama Tempat",
                       style: TextStyle(
                         color: Colors.black54,
@@ -213,14 +213,14 @@ class _AntrianState extends State<Antrian> {
                     ),
                     Text(
                       listAntrian[index]['namadinas'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 13,
                         fontFamily: 'Roboto'
                       ),
                     ),
-                    SizedBox(height: 3),
-                    Text(
+                    const SizedBox(height: 3),
+                    const Text(
                       "Nama Layanan",
                       style: TextStyle(
                         color: Colors.black54,
@@ -230,20 +230,20 @@ class _AntrianState extends State<Antrian> {
                     ),
                     Text(
                       listAntrian[index]['layanan'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 13,
                         fontFamily: 'Roboto'
                       ),
                     ),
-                    SizedBox(height: 3),
+                    const SizedBox(height: 3),
                     Row(
                       children: [
-                        Icon(FontAwesomeIcons.calendarAlt,color: Color(0xff68686A),),
-                        SizedBox(width:5),
+                        const Icon(FontAwesomeIcons.calendarAlt,color: Color(0xff68686A),),
+                        const SizedBox(width:5),
                         Text(
                           listAntrian[index]['tanggal'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 13,
                             fontFamily: 'Roboto'
@@ -272,7 +272,7 @@ class _AntrianState extends State<Antrian> {
                               Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailAntrian()));
                             },
                             child: Row(
-                              children: [
+                              children: const [
                                 Text(
                                   "Lihat Detail",
                                   style: TextStyle(
@@ -339,7 +339,7 @@ class _BarNavigasi2State extends State<BarNavigasi2> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 40,
                     height: 30,
                     child: Icon(
@@ -347,16 +347,16 @@ class _BarNavigasi2State extends State<BarNavigasi2> {
                       size: 30,
                       color: Color(0xff6E6E6E),
                     ),),
-                    Container(
-                      padding: EdgeInsets.only(top: 2),
-                      child: Text(
-                        "Home",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xff6E6E6E)
-                        ),
+                  Container(
+                    padding: EdgeInsets.only(top: 2),
+                    child: const Text(
+                      "Home",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xff6E6E6E)
                       ),
                     ),
+                  ),
                 ],
               ),
             ),
@@ -374,7 +374,7 @@ class _BarNavigasi2State extends State<BarNavigasi2> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 40,
                     height: 30,                  
                     child: Icon(
@@ -382,16 +382,16 @@ class _BarNavigasi2State extends State<BarNavigasi2> {
                       size: 36,
                       color: Color(0xffcd1b1b),
                     ),),
-                    Container(
-                      padding: EdgeInsets.only(top: 2),
-                      child: Text(
-                        "Antrian",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xffcd1b1b),
-                        ),
+                  Container(
+                    padding: EdgeInsets.only(top: 2),
+                    child: const Text(
+                      "Antrian",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xffcd1b1b),
                       ),
                     ),
+                  ),
                 ],
               ),
             ),
@@ -417,7 +417,7 @@ class _BarNavigasi2State extends State<BarNavigasi2> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 40,
                     height: 30,                                      
                     child: Icon(
@@ -425,16 +425,16 @@ class _BarNavigasi2State extends State<BarNavigasi2> {
                       size: 30,
                       color: Color(0xff6E6E6E),                    
                     ),),                
-                    Container(
-                      padding: EdgeInsets.only(top: 2),
-                      child: Text(
-                        "Profile",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xff6E6E6E)
-                        ),
+                  Container(
+                    padding: EdgeInsets.only(top: 2),
+                    child: const Text(
+                      "Profile",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xff6E6E6E)
                       ),
                     ),
+                  ),
                 ],
               ),
             ),

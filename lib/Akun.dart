@@ -41,7 +41,7 @@ class _AkunState extends State<Akun> {
           Container(
             child: Container(
               width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.791,
+                height: MediaQuery.of(context).size.height * 0.7885,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: [

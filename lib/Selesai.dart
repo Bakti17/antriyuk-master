@@ -75,7 +75,7 @@ class _AktivitasSelesaiState extends State<AktivitasSelesai> {
           ),
           Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height*0.731,
+            height: MediaQuery.of(context).size.height*0.7285,
             decoration: BoxDecoration(   
                 color: Colors.white,
                 boxShadow: [
@@ -136,7 +136,7 @@ class _SelesaiState extends State<Selesai> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-               boxShadow: [
+               boxShadow: const [
                   BoxShadow(
                     color: Colors.black12,
                     spreadRadius: 0,
@@ -156,7 +156,7 @@ class _SelesaiState extends State<Selesai> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Antrian telah selesai",
                       style: TextStyle(
                         color: Colors.black,
@@ -165,8 +165,8 @@ class _SelesaiState extends State<Selesai> {
                         fontFamily: 'Roboto Medium'
                       ),
                     ),
-                    SizedBox(height: 3),
-                    Text(
+                    const SizedBox(height: 3),
+                    const Text(
                       "Nomor Antrian",
                       style: TextStyle(
                         color: Colors.black54,
@@ -176,14 +176,14 @@ class _SelesaiState extends State<Selesai> {
                     ),
                     Text(
                       listAntrian[index]['nomorantri'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 13,
                         fontFamily: 'Roboto'
                       ),
                     ),
-                    SizedBox(height: 3),
-                    Text(
+                    const SizedBox(height: 3),
+                    const Text(
                       "Nama Lengkap",
                       style: TextStyle(
                         color: Colors.black54,
@@ -193,14 +193,14 @@ class _SelesaiState extends State<Selesai> {
                     ),
                     Text(
                       listAntrian[index]['nama'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 13,
                         fontFamily: 'Roboto'
                       ),
                     ),
-                    SizedBox(height: 3),
-                    Text(
+                    const SizedBox(height: 3),
+                    const Text(
                       "Nama Tempat",
                       style: TextStyle(
                         color: Colors.black54,
@@ -210,14 +210,14 @@ class _SelesaiState extends State<Selesai> {
                     ),
                     Text(
                       listAntrian[index]['namadinas'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 13,
                         fontFamily: 'Roboto'
                       ),
                     ),
-                    SizedBox(height: 3),
-                    Text(
+                    const SizedBox(height: 3),
+                    const Text(
                       "Nama Layanan",
                       style: TextStyle(
                         color: Colors.black54,
@@ -227,20 +227,20 @@ class _SelesaiState extends State<Selesai> {
                     ),
                     Text(
                       listAntrian[index]['layanan'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 13,
                         fontFamily: 'Roboto'
                       ),
                     ),
-                    SizedBox(height: 3),
+                    const SizedBox(height: 3),
                     Row(
                       children: [
-                        Icon(FontAwesomeIcons.calendarAlt,color: Color(0xff68686A),),
-                        SizedBox(width:5),
+                        const Icon(FontAwesomeIcons.calendarAlt,color: Color(0xff68686A),),
+                        const SizedBox(width:5),
                         Text(
                           listAntrian[index]['tanggal'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 13,
                             fontFamily: 'Roboto'

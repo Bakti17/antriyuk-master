@@ -71,17 +71,17 @@ class _DetailAntrianState extends State<DetailAntrian> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Detail Antrian",
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'Roboto'
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               "Nomor Antrian",
               style: TextStyle(
                 fontSize: 14,
@@ -96,16 +96,16 @@ class _DetailAntrianState extends State<DetailAntrian> {
             child: TextField(
               controller: nomorAntrian,
               textAlign: TextAlign.left,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
               ),
               enabled: false,
             )
           ),
-          SizedBox(
+          const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               "Nama Lengkap",
               style: TextStyle(
                 fontSize: 14,
@@ -120,16 +120,16 @@ class _DetailAntrianState extends State<DetailAntrian> {
             child: TextField(
               controller: nama,
               textAlign: TextAlign.left,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
               ),
               enabled: false,
             )
           ),
-          SizedBox(
+          const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               "Nama Tempat",
               style: TextStyle(
                 fontSize: 14,
@@ -144,16 +144,16 @@ class _DetailAntrianState extends State<DetailAntrian> {
             child: TextField(
               controller: tempat,
               textAlign: TextAlign.left,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
               ),
               enabled: false,
             )
           ),
-          SizedBox(
+          const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               "Layanan",
               style: TextStyle(
                 fontSize: 14,
@@ -168,16 +168,16 @@ class _DetailAntrianState extends State<DetailAntrian> {
             child: TextField(
               controller: layanan,
               textAlign: TextAlign.left,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
               ),
               enabled: false,
             )
           ),
-          SizedBox(
+          const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               "Alamat Tempat",
               style: TextStyle(
                 fontSize: 14,
@@ -194,16 +194,16 @@ class _DetailAntrianState extends State<DetailAntrian> {
               maxLines: 3 ,
               controller: alamat,
               textAlign: TextAlign.left,              
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
               ),
               enabled: false,
             )
           ),
-          SizedBox(
+          const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               "Tanggal",
               style: TextStyle(
                 fontSize: 14,
@@ -219,7 +219,7 @@ class _DetailAntrianState extends State<DetailAntrian> {
               controller: tanggal,
               textAlign: TextAlign.left,
               // controller:,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
               ),
               enabled: false,

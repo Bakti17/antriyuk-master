@@ -22,7 +22,7 @@ class _AmbilAntriState extends State<AmbilAntri> {
   TextEditingController namaLengkap = TextEditingController();
   TextEditingController tempat = TextEditingController();
   TextEditingController dateinput = TextEditingController();
-  
+  String tanggal = "";
   String valLayanan = "";
   List<String> listLayanan = [];
   
@@ -52,31 +52,27 @@ class _AmbilAntriState extends State<AmbilAntri> {
     if(list.length>1){
       _showMyDialogcek();
     }
-    else{
-      cekKuota();
-    }
-    
-
   }
 
   void cekKuota()async{
-    String tgl = DateFormat("y-MM-d", "id_ID").format(DateTime.now());
-    final response = await http.post(Uri.parse("http://10.0.2.2/antriyuk/cekKuota.php"), body: {"dinas": tempat.text, "tanggal":tgl});
+    final response = await http.post(Uri.parse("http://10.0.2.2/antriyuk/cekKuota.php"), body: {"dinas": tempat.text, "tanggal":tanggal});
     List list = jsonDecode(response.body);
+    print(list[0]['antrian']);
     if(list[0]['antrian'] >= 50){
       _dialogAntriPenuh();
     }
-  }
-
-  void _lanjut(){
-    ReviewAntri.nama.text = namaLengkap.text;
-    ReviewAntri.layanan.text = valLayanan;
-    ReviewAntri.tanggal.text = dateinput.text;
-    ReviewAntri.tempat.text = tempat.text;
-    HasilAntri.nama.text = namaLengkap.text;
-    HasilAntri.layanan.text = valLayanan;
-    HasilAntri.tempat.text = tempat.text;
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>ReviewAntri()));
+    else{
+      setState(() {
+        ReviewAntri.nama.text = namaLengkap.text;
+        ReviewAntri.layanan.text = valLayanan;
+        ReviewAntri.tanggal.text = dateinput.text;
+        ReviewAntri.tempat.text = tempat.text;
+        HasilAntri.nama.text = namaLengkap.text;
+        HasilAntri.layanan.text = valLayanan;
+        HasilAntri.tempat.text = tempat.text;
+      });
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>ReviewAntri()));
+    }
   }
 
   Future<void> _showMyDialog() async {
@@ -169,7 +165,7 @@ class _AmbilAntriState extends State<AmbilAntri> {
                 ),
                 const Text(''),
                 const Text(
-                  'Mohon untuk menunggu hari selajutnya untuk mendaftar antrian lagi',
+                  'Mohon memilih hari yang lainnya.',
                   textAlign: TextAlign.justify,
                 ),
               ],
@@ -179,8 +175,8 @@ class _AmbilAntriState extends State<AmbilAntri> {
             TextButton(
               child: const Text('OK'),
               onPressed: () {
-                Navigator.of(context)
-                .pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>HalHome()), (Route<dynamic> route) => false);
+                Navigator.pop(context);
+                
               },
             ),
           ],
@@ -217,8 +213,8 @@ class _AmbilAntriState extends State<AmbilAntri> {
           Spacer(flex: 2,),
           Container(
             width: MediaQuery.of(context).size.width * 0.4,
-            padding: EdgeInsets.only(left: 30),
-            child: Text("Detail antrian", style: TextStyle(
+            padding: const EdgeInsets.only(left: 30),
+            child: const Text("Detail antrian", style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -229,19 +225,19 @@ class _AmbilAntriState extends State<AmbilAntri> {
           Spacer(flex: 2,),  ////////////////Nama Lengkap
           Container(
             width: MediaQuery.of(context).size.width * 0.4,
-            padding: EdgeInsets.only(left: 30),
-            child: Text("Nama lengkap", style: TextStyle(
+            padding: const EdgeInsets.only(left: 30),
+            child: const Text("Nama lengkap", style: TextStyle(
               color: Colors.black54,
               fontSize: 16,
             ),),
           ),
           Container(
-            padding: EdgeInsets.only(left: 30),
+            padding: const EdgeInsets.only(left: 30),
             width: MediaQuery.of(context).size.width * 0.9,
             alignment: Alignment.center,
             child: TextField(
               textAlign: TextAlign.left,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Nama lengkap anda",
                 hintStyle: TextStyle(color: Colors.black87),
                 border: UnderlineInputBorder(),
@@ -253,14 +249,14 @@ class _AmbilAntriState extends State<AmbilAntri> {
           Spacer(flex: 1,), //Tempat
           Container(
             width: MediaQuery.of(context).size.width * 0.4,
-            padding: EdgeInsets.only(left: 30),
-            child: Text("Tempat", style: TextStyle(
+            padding: const EdgeInsets.only(left: 30),
+            child: const Text("Tempat", style: TextStyle(
               color: Colors.black54,
               fontSize: 16,
             ),),
           ),
           Container(
-            padding: EdgeInsets.only(left: 30),
+            padding: const EdgeInsets.only(left: 30),
             width: MediaQuery.of(context).size.width * 0.9,
             height: MediaQuery.of(context).size.height * 0.05,
             alignment: Alignment.center,
@@ -276,7 +272,7 @@ class _AmbilAntriState extends State<AmbilAntri> {
               ),              
               child: TextField(
                 controller:tempat,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -288,8 +284,8 @@ class _AmbilAntriState extends State<AmbilAntri> {
           Spacer(flex: 1,), //Layanan
           Container(
             width: MediaQuery.of(context).size.width * 0.4,
-            padding: EdgeInsets.only(left: 30),
-            child: Text("Layanan", style: TextStyle(
+            padding: const EdgeInsets.only(left: 30),
+            child: const Text("Layanan", style: TextStyle(
               color: Colors.black54,
               fontSize: 16,
             ),),
@@ -300,8 +296,8 @@ class _AmbilAntriState extends State<AmbilAntri> {
             height: MediaQuery.of(context).size.height * 0.05,
             child: DropdownButton(
               isExpanded: true,
-              hint: Text("Pilih Layanan"),
-              icon: Icon(
+              hint: const Text("Pilih Layanan"),
+              icon: const Icon(
                 Icons.keyboard_arrow_down,
                 color: Color(0xffdc1b1b)
               ),
@@ -324,19 +320,19 @@ class _AmbilAntriState extends State<AmbilAntri> {
           Spacer(flex: 1,), //Tanggal
           Container(
             width: MediaQuery.of(context).size.width * 0.4,
-            padding: EdgeInsets.only(left: 30),
-            child: Text("Tanggal", style: TextStyle(
+            padding: const EdgeInsets.only(left: 30),
+            child: const Text("Tanggal", style: TextStyle(
               color: Colors.black54,
               fontSize: 16,
             ),),
           ),
           Container(
-            padding: EdgeInsets.only(left: 30),
+            padding: const EdgeInsets.only(left: 30),
             width: MediaQuery.of(context).size.width * 0.9,
             height: MediaQuery.of(context).size.height * 0.05,
             child: TextField(
                 controller: dateinput, 
-                decoration: InputDecoration( 
+                decoration: const InputDecoration( 
                    suffixIcon: Icon(Icons.calendar_today,color: Color(0xffdc1b1b)), 
                    hintText: "Masukkan tanggal",
                 ),
@@ -353,6 +349,7 @@ class _AmbilAntriState extends State<AmbilAntri> {
                       setState(() {
                          dateinput.text = formattedDate;
                           HasilAntri.tanggal = pickedDate;
+                          tanggal = DateFormat("y-MM-d").format(pickedDate);
                       });
                   }
                 },
@@ -361,10 +358,10 @@ class _AmbilAntriState extends State<AmbilAntri> {
 
           Spacer(flex: 20,),
           Container(
-            padding: EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.1,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               boxShadow: [
                 BoxShadow(
                   color: Colors.black12,
@@ -379,15 +376,15 @@ class _AmbilAntriState extends State<AmbilAntri> {
               height: MediaQuery.of(context).size.height * 0.05,
               child: ElevatedButton(                
                 onPressed: (){
-                  _lanjut();
+                  cekKuota();
                 },
-                child: Text("LANJUTKAN", style: TextStyle(
+                child: const Text("LANJUTKAN", style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),),
                 style: ElevatedButton.styleFrom(
-                  fixedSize: Size.square(20 * 30),
-                  primary: Color(0xffdc1b1b)
+                  fixedSize: const Size.square(20 * 30),
+                  primary: const Color(0xffdc1b1b)
                 ),
               ),
             ),

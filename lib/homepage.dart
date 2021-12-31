@@ -89,7 +89,7 @@ class HalHome extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.only(top: 15, left: 10, right: 10),
-              height: MediaQuery.of(context).size.height * 0.60,
+              height: MediaQuery.of(context).size.height * 0.597,
               decoration: BoxDecoration(   
                 color: Colors.white,
                 boxShadow: [

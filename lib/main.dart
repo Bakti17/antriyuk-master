@@ -103,7 +103,7 @@ class CekLoginState extends State<CekLogin>
 
   @override
   Widget build(BuildContext context) {
-    // return isLoggedin==true ? HalHome() : LoginPage();
+    
     return isLoggedin == true? HalHome(): LoginPage();
   }
 
